@@ -1,48 +1,71 @@
-<!doctype html>
-<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#12314a"><title>Pemindai QR · MA Jalancagak</title>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Presensi MA Jalancagak</title>
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 <style>
-:root{--navy:#12314a;--blue:#1769aa;--bg:#f2f6fa;--ink:#182b3a;--muted:#64748b;--line:#dce5ed;--green:#137b4b;--red:#a8322a}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}.head{background:linear-gradient(120deg,#12314a,#1769aa);color:white;padding:22px 16px}.wrap{max-width:760px;margin:auto}.head h1{font-size:25px;margin:0 0 6px}.head p{margin:0;opacity:.9}.main{padding:16px 12px 28px}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;box-shadow:0 5px 18px #18334a0a}h2{font-size:18px;margin:0 0 6px}.hint{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 12px}label{display:block;font-weight:bold;font-size:13px;margin:12px 0 6px}input,select{width:100%;font-size:15px;padding:12px;border:1px solid #cbd5e1;border-radius:10px;background:white;color:var(--ink)}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}.mode{padding:12px;border:1px solid var(--line);border-radius:11px;background:white;font-weight:bold}.mode.active{border:2px solid var(--blue);background:#eaf4ff;color:#124d80}.btn{border:0;border-radius:10px;padding:13px 14px;font-weight:bold;font-size:15px;background:var(--blue);color:white;width:100%;margin-top:12px}.btn.secondary{background:#e7edf3;color:var(--navy)}.btn:disabled{opacity:.5}#reader{width:100%;max-width:500px;margin:12px auto 0;overflow:hidden;border-radius:12px}#reader video{border-radius:12px}.status{padding:12px;border-radius:10px;background:#f1f5f9;font-size:14px;line-height:1.45;overflow-wrap:anywhere;margin-top:12px}.good{background:#e8f7ef;color:var(--green)}.bad{background:#fff0ef;color:var(--red)}.recent{font-size:14px;line-height:1.5}.hidden{display:none!important}.tiny{font-size:12px;color:var(--muted);line-height:1.5}.pill{display:inline-block;border-radius:20px;padding:4px 8px;background:#eaf4ff;color:#124d80;font-size:12px;font-weight:bold}.foot{text-align:center;color:var(--muted);font-size:12px;padding:10px}@media(max-width:520px){.row{grid-template-columns:1fr}.head h1{font-size:22px}.card{padding:14px}}
-#apiUrl,label[for="apiUrl"],#connect{display:none!important}</style></head><body>
-<header class="head"><div class="wrap"><h1>Presensi MA Jalancagak</h1><p>Pemindai QR mandiri · kamera di halaman terpisah</p></div></header>
+:root{--navy:#12314a;--blue:#1769aa;--mint:#e8f7f2;--bg:#f3f6fa;--ink:#172b3a;--muted:#64748b;--line:#dbe4ec;--red:#b42318;--green:#147d4a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}.top{background:linear-gradient(120deg,#12314a,#1769aa);color:#fff;padding:24px 16px}.wrap{max-width:960px;margin:auto}.eyebrow{font-size:12px;letter-spacing:1.5px;opacity:.85;font-weight:bold}h1{margin:7px 0;font-size:clamp(24px,4vw,34px)}.top p{margin:0;opacity:.9}.main{padding:18px 14px 32px}.notice{padding:12px 14px;background:#fff7df;border:1px solid #f3d78b;border-radius:12px;margin-bottom:16px;font-size:13px;line-height:1.5}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 5px 18px #19334a0a}h2{font-size:18px;margin:0 0 8px}.sub{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 16px}label{display:block;font-size:13px;font-weight:bold;margin:12px 0 6px}input,select{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;font-size:15px;color:var(--ink)}.modes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}.mode{border:1px solid var(--line);background:#fff;border-radius:12px;padding:13px 10px;cursor:pointer;font-weight:bold;color:var(--ink)}.mode.active{border:2px solid var(--blue);background:#eaf4ff;color:#124d80}.mode span{display:block;font-size:22px;margin-bottom:6px}.btn{border:0;border-radius:10px;padding:12px 15px;font-weight:bold;cursor:pointer;background:var(--blue);color:#fff}.btn:disabled{opacity:.5;cursor:wait}.btn.secondary{background:#e8eef5;color:#12314a}.btn.full{width:100%;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#f6f9fc;border-radius:11px;padding:13px 8px;text-align:center}.stat span{display:block;color:var(--muted);font-size:12px}.stat b{display:block;font-size:25px;margin-top:5px}.scanner{margin-top:16px}.scannerbox{max-width:520px;margin:10px auto}#reader{width:100%;overflow:hidden;border-radius:12px}#reader video{border-radius:12px}.status{padding:12px;border-radius:10px;background:#f3f6fa;margin-top:12px;font-size:14px;line-height:1.5;overflow-wrap:anywhere}.status.good{background:#e8f7ef;color:var(--green)}.status.bad{background:#fff0ef;color:var(--red)}.recent{margin-top:16px}.recentrow{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:13px}.recentrow:last-child{border-bottom:0}.tag{font-size:11px;font-weight:bold;background:#e8f7ef;color:var(--green);padding:5px 8px;border-radius:20px;white-space:nowrap}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:18px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.card{padding:15px}.top{padding:21px 15px}.main{padding:13px 10px 24px}}
+.gate{position:fixed;inset:0;background:#12314aee;z-index:99;display:flex;align-items:center;justify-content:center;padding:20px}.gatebox{background:white;border-radius:18px;padding:24px;width:min(100%,420px);box-shadow:0 20px 60px #0003}.gatebox h2{margin-bottom:8px}.gatebox p{color:#64748b;font-size:14px;line-height:1.5}.gate.hidden{display:none!important}
+</style></head>
+<body>
+<div id="gate" class="gate"><div class="gatebox"><h2>Akses Guru · Presensi MA Jalancagak</h2><p>Masukkan kode akses bersama yang diberikan admin madrasah. Kode ini hanya untuk guru/petugas.</p><label for="accessCode">Kode akses guru</label><input id="accessCode" type="password" autocomplete="current-password" placeholder="Masukkan kode akses"><button id="loginBtn" class="btn full">Masuk</button><div id="gateStatus" class="status">Aplikasi hanya untuk guru/petugas.</div></div></div>
+<header class="top"><div class="wrap"><div class="eyebrow">SISTEM PRESENSI DIGITAL</div><h1>Presensi MA Jalancagak</h1><p>Pencatatan kehadiran berbasis QR Code</p></div></header>
 <main class="wrap main">
-<section class="card"><h2>Pengaturan Presensi</h2><p class="hint">Pengaturan diterima dari aplikasi utama. Pemindai ini hanya digunakan untuk membaca QR siswa.</p>
-<label for="apiUrl">URL Web App Apps Script (/exec)</label><input id="apiUrl" type="url" placeholder="https://script.google.com/macros/s/.../exec" autocomplete="url">
-<button id="connect" class="btn secondary">Hubungkan ke Google Sheets</button><div id="connStatus" class="status">Belum terhubung.</div>
-<label for="teacher">Nama guru/petugas</label><select id="teacher" disabled><option value="">Hubungkan dahulu…</option></select>
-<label for="kelas">Filter kelas (opsional)</label><select id="kelas" disabled><option value="">Semua kelas</option></select>
-<label>Jenis presensi</label><div class="modes"><button class="mode active" data-mode="DATANG">🌅 DATANG</button><button class="mode" data-mode="PULANG">🏠 PULANG</button></div>
-<button id="start" class="btn" disabled>Mulai Kamera & Scan Otomatis</button><button id="stop" class="btn secondary hidden">Hentikan Kamera</button>
-<div id="camStatus" class="status">Kamera belum diaktifkan.</div><div id="reader"></div>
-<p class="tiny">Setelah mulai, arahkan QR siswa ke kamera. QR akan dibaca dan dicatat otomatis. Tunggu bunyi/konfirmasi sebelum memindai siswa berikutnya.</p></section>
-<section class="card"><h2>Hasil pemindaian</h2><p class="hint">Hasil terbaru sesi ini</p><div id="last" class="status">Belum ada QR yang dipindai.</div><div id="recent" class="recent"></div></section>
-<div class="foot">MA Jalancagak · Presensi digital</div></main>
+
+<div class="grid">
+<section class="card"><h2>Pengaturan Presensi</h2><p class="sub">Pilih mode dan isi nama petugas sebelum memindai QR siswa.</p>
+<label for="petugas">Nama guru/petugas</label><select id="petugas" disabled><option value="">Memuat daftar guru…</option></select>
+<label for="kelas">Filter kelas (opsional)</label><select id="kelas"><option value="">Semua kelas</option></select>
+<label>Jenis presensi</label><div class="modes"><button class="mode active" data-mode="DATANG"><span>🌅</span>DATANG</button><button class="mode" data-mode="PULANG"><span>🏠</span>PULANG</button></div>
+<button id="startBtn" class="btn full" disabled>Buka Pemindai QR</button>
+<div id="status" class="status">Masukkan kode akses guru untuk membuka aplikasi.</div></section>
+<section class="card"><h2>Ringkasan</h2><p class="sub" id="summaryDate">Ringkasan presensi hari ini</p><div class="stats"><div class="stat"><span>Total siswa aktif</span><b id="total">—</b></div><div class="stat"><span>Presensi sesi ini</span><b id="count">0</b></div><div class="stat"><span>Mode</span><b id="modeStat">DATANG</b></div></div>
+<div class="status" style="margin-top:16px">Setelah QR terbaca, data siswa dan waktu akan dicatat ke sheet <b>PRESENSI</b>. Sistem mencegah pencatatan ganda untuk siswa, tanggal, dan mode yang sama.</div>
+<div class="recent"><h2 style="margin-top:18px">Presensi terbaru di sesi ini</h2><div id="recent"><p class="sub">Belum ada presensi di sesi ini.</p></div></div></section>
+</div>
+
+<div class="footer">MA Jalancagak · Presensi digital</div>
+</main>
 <script>
-const $=id=>document.getElementById(id);const qp=new URLSearchParams(location.search);let accessCode=qp.get('kode')||'',mode=(qp.get('mode')||'DATANG').toUpperCase(),scanner=null,running=false,busy=false,lastToken='',lastAt=0,recent=[];
-function status(id,msg,kind=''){const el=$(id);el.className='status '+kind;el.textContent=msg}
-document.querySelectorAll('.mode').forEach(b=>{b.classList.toggle('active',b.dataset.mode===mode);b.addEventListener('click',()=>{document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));b.classList.add('active');mode=b.dataset.mode;});});
-if(qp.get('api')) $('apiUrl').value=qp.get('api');
-if(qp.get('petugas')) { const t=document.createElement('p'); t.className='status good'; t.textContent='Guru: '+qp.get('petugas')+' · Mode: '+mode+' · Filter kelas: '+(qp.get('kelas')||'Semua kelas'); $('connStatus').after(t); }
-
-function jsonp(params){return new Promise((resolve,reject)=>{const cb='presensiCallback';const timer=setTimeout(()=>{cleanup();reject(new Error('Koneksi ke Apps Script habis waktu. Periksa URL dan deployment.'));},18000);const script=document.createElement('script');let done=false;function cleanup(){if(done)return;done=true;clearTimeout(timer);script.remove();delete window[cb];}window[cb]=data=>{cleanup();resolve(data)};const u=new URL($('apiUrl').value.trim());u.searchParams.set('action',params.action);u.searchParams.set('callback',cb);u.searchParams.set('kode',accessCode);Object.entries(params).forEach(([k,v])=>{if(k!=='action'&&v!==undefined&&v!==null)u.searchParams.set(k,String(v));});script.src=u.toString();script.onerror=()=>{cleanup();reject(new Error('Tidak dapat menghubungi Apps Script. Pastikan URL /exec benar dan akses deployment diizinkan.'));};document.body.appendChild(script);});}
-$('connect').addEventListener('click',async()=>{const url=$('apiUrl').value.trim();if(!url.startsWith('https://script.google.com/macros/s/')||!url.includes('/exec')){status('connStatus','Masukkan URL Web App Apps Script yang benar dan berakhiran /exec.','bad');return;}try{new URL(url);localStorage.setItem('majalancagak_api_url',url);}catch(e){status('connStatus','URL tidak valid.','bad');return;}$('connect').disabled=true;status('connStatus','Menghubungkan dan memuat daftar guru…');try{const r=await jsonp({action:'init'});if(!r.success)throw new Error(r.message||'Gagal memuat data');const d=r.data||{};$('teacher').innerHTML='<option value="">Pilih guru/petugas</option>'+ (d.teachers||[]).map(t=>`<option value="${esc(t.name)}">${esc(t.name)}${t.kelas?' — '+esc(t.kelas):''}</option>`).join('');$('kelas').innerHTML='<option value="">Semua kelas</option>'+ (d.classes||[]).map(c=>`<option value="${esc(c)}">${esc(c)}</option>`).join('');$('teacher').disabled=false;$('kelas').disabled=false;status('connStatus',`Terhubung. ${d.totalStudents||0} siswa aktif terdeteksi.`,'good');$('start').disabled=false;if(qp.get('api')&&qp.get('petugas')) startCamera();}catch(e){status('connStatus','Gagal terhubung: '+e.message,'bad');}finally{$('connect').disabled=false;}});
-function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-async function startCamera(){if(!$('teacher').value){status('camStatus','Pilih nama guru/petugas terlebih dahulu.','bad');return;}if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){status('camStatus','Browser ini tidak menyediakan akses kamera. Buka situs HTTPS langsung di Chrome.','bad');return;}try{$('start').disabled=true;status('camStatus','Meminta izin kamera…');if(!scanner)scanner=new Html5Qrcode('reader',{verbose:false});let cameras=await Html5Qrcode.getCameras();if(!cameras.length)throw new Error('Tidak ada kamera yang terdeteksi.');let cam=cameras.find(c=>/back|rear|environment|belakang/i.test(c.label))||cameras[cameras.length-1];await scanner.start(cam.id,{fps:12,qrbox:(w,h)=>{const s=Math.floor(Math.min(w,h)*.72);return {width:s,height:s};},aspectRatio:1.0},onScan,()=>{});running=true;$('start').classList.add('hidden');$('stop').classList.remove('hidden');status('camStatus','Kamera aktif. Arahkan QR siswa ke kotak pemindai.','good');}catch(e){status('camStatus','Kamera gagal dibuka: '+(e.message||e)+' Pastikan izin kamera Chrome aktif dan halaman ini dibuka lewat HTTPS.','bad');$('start').disabled=false;}}
-async function stopCamera(){if(scanner&&running){try{await scanner.stop();}catch(e){}try{await scanner.clear();}catch(e){}}running=false;busy=false;$('start').classList.remove('hidden');$('start').disabled=!$('teacher').value;$('stop').classList.add('hidden');status('camStatus','Kamera dihentikan.');}
-$('start').addEventListener('click',startCamera);$('stop').addEventListener('click',stopCamera);
-async function onScan(decoded){if(!running||busy)return;const now=Date.now();if(decoded===lastToken&&now-lastAt<3500)return;busy=true;lastToken=decoded;lastAt=now;try{status('camStatus','QR terbaca. Memvalidasi dan menyimpan…');const r=await jsonp({action:'scan',qr:decoded,mode,petugas:$('teacher').value,kelas:$('kelas').value});if(!r.success)throw new Error(r.message||'Presensi gagal.');const item=`${r.nama} · ${r.kelas} · ${r.mode} · ${r.jam||''}`;status('last','✓ '+item,'good');status('camStatus','Berhasil dicatat. Arahkan QR siswa berikutnya.','good');recent.unshift(item);recent=recent.slice(0,8);$('recent').innerHTML=recent.map(x=>'<div style="padding:8px 0;border-bottom:1px solid #dce5ed">✓ '+esc(x)+'</div>').join('');try{if(navigator.vibrate)navigator.vibrate(100);}catch(e){} }catch(e){status('last','Gagal: '+e.message,'bad');status('camStatus','QR terdeteksi tetapi belum berhasil dicatat. Periksa pesan hasil lalu coba kembali.','bad');}finally{setTimeout(()=>{busy=false;},900);}}
-window.addEventListener('beforeunload',()=>{if(scanner&&running)scanner.stop().catch(()=>{});});
-if(!qp.get('api')){status('connStatus','Buka pemindai melalui tombol Mulai Scan QR di aplikasi utama Presensi MA Jalancagak.','bad');$('start').disabled=true;}
-const saved=localStorage.getItem('majalancagak_api_url');if(!qp.get('api')&&saved)$('apiUrl').value=saved;
-if(qp.get('api') && accessCode && qp.get('petugas')) {
-  $('apiUrl').value=qp.get('api');
-  $('teacher').innerHTML='<option value="'+esc(qp.get('petugas'))+'">'+esc(qp.get('petugas'))+'</option>';
-  $('teacher').value=qp.get('petugas');
-  $('kelas').innerHTML='<option value="'+esc(qp.get('kelas')||'')+'">'+esc(qp.get('kelas')||'Semua kelas')+'</option>';
-  $('kelas').value=qp.get('kelas')||'';
-  mode=mode==='PULANG'?'PULANG':'DATANG';
-  document.querySelectorAll('.mode').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
-  $('connect').click();
+const SCANNER_URL='https://rinrinirma.github.io/presensi-ma-jalancagak/';
+const $=id=>document.getElementById(id);let mode='DATANG',accessCode='',count=0;const recent=[];
+function setStatus(msg,type=''){const el=$('status');el.textContent=msg;el.className='status '+type}
+function updateMode(){ $('modeStat').textContent=mode; }
+document.querySelectorAll('.mode').forEach(btn=>btn.addEventListener('click',()=>{mode=btn.dataset.mode;document.querySelectorAll('.mode').forEach(b=>b.classList.toggle('active',b===btn));updateMode();setStatus('Mode presensi: '+mode+'. Siap membuka pemindai QR.')}));
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function loadData(){
+ google.script.run.withSuccessHandler(data=>{
+  $('total').textContent=data.totalStudents;
+  $('petugas').innerHTML='<option value="">Pilih guru/petugas</option>'+(data.teachers||[]).map(t=>`<option value="${escapeHtml(t.name)}">${escapeHtml(t.name)}${t.kelas?' — '+escapeHtml(t.kelas):''}</option>`).join('');
+  $('petugas').disabled=false;
+  const sel=$('kelas');sel.innerHTML='<option value="">Semua kelas</option>';
+  (data.classes||[]).forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;sel.appendChild(o)});
+  $('startBtn').disabled=false;setStatus('Aplikasi siap. Pilih guru, kelas, dan mode presensi.');
+ }).withFailureHandler(err=>setStatus(err.message||'Gagal memuat data.','bad')).getInitData();
 }
-
+$('loginBtn').addEventListener('click',()=>{
+ const code=$('accessCode').value.trim();if(!code){$('gateStatus').textContent='Kode akses wajib diisi.';return}
+ $('loginBtn').disabled=true;$('gateStatus').textContent='Memeriksa kode akses…';
+ google.script.run.withSuccessHandler(()=>{accessCode=code;$('gate').classList.add('hidden');loadData();}).withFailureHandler(err=>{$('gateStatus').textContent=(err&&err.message)||'Kode akses salah.';$('gateStatus').className='status bad';$('loginBtn').disabled=false;}).verifyAccessCode(code);
+});
+$('accessCode').addEventListener('keydown',e=>{if(e.key==='Enter')$('loginBtn').click()});
+$('petugas').addEventListener('change',()=>{$('startBtn').disabled=!$('petugas').value;});
+$('startBtn').addEventListener('click',()=>{
+ if(!accessCode){setStatus('Masukkan kode akses terlebih dahulu.','bad');return}
+ if(!$('petugas').value){setStatus('Pilih nama guru/petugas.','bad');return}
+ const u=new URL(SCANNER_URL);
+ u.searchParams.set('api',ScriptAppUrlFallback());
+ u.searchParams.set('kode',accessCode);
+ u.searchParams.set('petugas',$('petugas').value);
+ u.searchParams.set('kelas',$('kelas').value);
+ u.searchParams.set('mode',mode);
+ window.open(u.toString(),'presensiScanner');
+ setStatus('Pemindai dibuka di tab baru. Setelah scan berhasil, kembali ke halaman ini untuk melihat ringkasan.','good');
+});
+function ScriptAppUrlFallback(){return window.location.href.split('?')[0]}
+function renderRecent(){ $('recent').innerHTML=recent.length?recent.map(r=>`<div class="recentrow"><div><b>${escapeHtml(r.nama)}</b><br><span style="color:#64748b">${escapeHtml(r.kelas)} · ${escapeHtml(r.jam)}</span></div><span class="tag">${escapeHtml(r.mode)}</span></div>`).join(''):'<p class="sub">Belum ada presensi di sesi ini.</p>'; }
+const d=new Date();$('summaryDate').textContent='Tanggal perangkat: '+d.toLocaleDateString('id-ID');
 </script></body></html>
